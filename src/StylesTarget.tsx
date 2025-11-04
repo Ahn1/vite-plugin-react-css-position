@@ -25,9 +25,10 @@ const StylesTarget = (props: {
 
   useEffect(() => {
     const updateListener = (_e: Event | undefined) => {
-      setStylesMap((window as any)[globalVarName]);
+      const newValues = (window as any)[globalVarName];
+      setStylesMap(newValues);
       setVersion((v) => v + 1);
-      props.onChange?.(stylesMap);
+      props.onChange?.(newValues);
     };
     window.addEventListener(eventName, updateListener);
 
