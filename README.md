@@ -1,6 +1,39 @@
-# react-components-starter
+# vite-plugin-react-css-position
 
-A starter for creating a React component library.
+Include the Stylesheets of your Vite-React-App on a custom position. This can be especially useful when using a Shadow DOM.
+
+## Usage
+
+### Install the package
+
+```bash
+npm install vite-plugin-react-css-position
+```
+
+### Update the Vite config
+
+```TS
+import { viteReactCssPosition } from "vite-plugin-react-css-position";
+
+export default defineConfig({
+  plugins: [viteReactCssPosition(), react()],
+});
+```
+
+### Include CSS on Custom Position
+
+```JS
+import { StylesTarget } from "vite-plugin-react-css-position";
+
+export function App() {
+  return (
+    <div>
+      <StylesTarget />
+      <span>Your App</span>
+    </div>
+  );
+}
+```
 
 ## Development
 
@@ -14,12 +47,6 @@ npm install
 
 ```bash
 npm run play
-```
-
-- Run the unit tests:
-
-```bash
-npm run test
 ```
 
 - Build the library:
