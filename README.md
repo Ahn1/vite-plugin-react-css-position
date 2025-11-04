@@ -35,6 +35,8 @@ export function App() {
 }
 ```
 
+Now your stylesheets are included on the specified position!
+
 ## Development
 
 - Install dependencies:
