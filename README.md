@@ -1,18 +1,43 @@
 # vite-plugin-react-css-position
 
-Include the Stylesheets of your Vite-React-App on a custom position. This can be especially useful when using a Shadow DOM.
+[![npm version](https://img.shields.io/npm/v/vite-plugin-react-css-position)](https://www.npmjs.com/package/vite-plugin-react-css-position)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Usage
+A Vite plugin that allows you to control where CSS stylesheets are injected in your React application. Perfect for scenarios where you need precise control over style placement, especially when working with Shadow DOM.
 
-### Install the package
+## ✨ Features
+
+- 🎯 **Custom CSS positioning** - Place stylesheets exactly where you need them in your component tree
+- 🌗 **Shadow DOM support** - Ideal for Shadow DOM implementations where styles need to be scoped
+- 🚀 **Development mode** - Optional hot module replacement support
+
+## 📦 Installation
 
 ```bash
 npm install vite-plugin-react-css-position
 ```
 
-### Update the Vite config
+or
 
-```TS
+```bash
+pnpm add vite-plugin-react-css-position
+```
+
+or
+
+```bash
+yarn add vite-plugin-react-css-position
+```
+
+## 🚀 Quick Start
+
+### 1. Configure Vite
+
+Add the plugin to your `vite.config.ts`:
+
+```typescript
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 import { viteReactCssPosition } from "vite-plugin-react-css-position";
 
 export default defineConfig({
@@ -20,39 +45,65 @@ export default defineConfig({
 });
 ```
 
-### Include CSS on Custom Position
+### 2. Use StylesTarget Component
 
-```JS
+Import and place the `StylesTarget` component where you want your styles to be injected:
+
+```tsx
 import StylesTarget from "vite-plugin-react-css-position/target";
 
 export function App() {
   return (
     <div>
       <StylesTarget />
-      <span>Your App</span>
+      <span>Your App Content</span>
     </div>
   );
 }
 ```
 
-Now your stylesheets are included on the specified position!
+That's it! Your stylesheets will now be injected at the position of the `<StylesTarget />` component.
 
-## Development
+## ⚙️ Configuration
 
-- Install dependencies:
+The plugin accepts optional configuration:
+
+```typescript
+viteReactCssPosition({
+  enableDev: true,
+});
+```
+
+### Options
+
+- **`instanceId`** - A custom identifier for the plugin instance. Useful when you have multiple instances or need to avoid conflicts. Defaults to a random UUID.
+- **`enableDev`** - When `true`, enables CSS injection during development mode. Defaults to `false`. Enable this for HMR support
+
+## 🛠️ Development
 
 ```bash
+# Install dependencies
 npm install
-```
 
-- Run the playground:
-
-```bash
+# Run the playground
 npm run play
-```
 
-- Build the library:
-
-```bash
+# Build the library
 npm run build
+
+# Run tests
+npm test
+
+# Type check
+npm run typecheck
 ```
+
+## 📝 License
+
+MIT © [Alexander Bogoslawski](https://github.com/Ahn1)
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/Ahn1/vite-plugin-react-css-position)
+- [Issue Tracker](https://github.com/Ahn1/vite-plugin-react-css-position/issues)
+- [npm Package](https://www.npmjs.com/package/vite-plugin-react-css-position)
