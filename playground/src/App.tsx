@@ -1,9 +1,11 @@
-import { MyButton } from '../../src'
+import React from "react";
+import { StylesTarget } from "../../src/StylesTarget";
 
 export function App() {
   return (
-    <>
-      <MyButton type="primary" />
-    </>
-  )
+    <div>
+      <StylesTarget />
+      <span>Test</span>
+    </div>
+  );
 }

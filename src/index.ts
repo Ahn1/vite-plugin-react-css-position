@@ -1,2 +1,3 @@
 export { default as viteReactCssPosition } from "./viteCustomCssPosition";
-export { StylesTarget } from "./ViteCustomStylePosition";
+export type { ViteCustomCssPositionOptions } from "./viteCustomCssPosition";
+export { StylesTarget } from "./StylesTarget";

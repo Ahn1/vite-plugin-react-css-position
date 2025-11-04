@@ -1,16 +1,27 @@
 import type { Plugin } from "vite";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
+import { randomUUID } from "crypto";
 
-export default function viteCustomCssPosition(): Plugin | Plugin[] {
+export interface ViteCustomCssPositionOptions {
+  instanceId?: string;
+}
+
+export default function viteCustomCssPosition(
+  options?: ViteCustomCssPositionOptions
+): Plugin | Plugin[] {
+  const instanceId = options?.instanceId || randomUUID().replace(/-/g, "");
+  const globalVarName = `__vite_c_css_pos_initial_${instanceId}`;
+  const eventName = `__vite_c_css_pos_update_${instanceId}`;
+
   const cssPlugin = cssInjectedByJsPlugin({
     dev: {
       enableDev: true,
       removeStyleCode(id: string) {
         return `
       (() => {
-            if(window.__vite_c_css_pos_initial && window.__vite_c_css_pos_initial.has('${id}')) {
-              window.__vite_c_css_pos_initial.delete('${id}');
-              window.dispatchEvent( new Event('__vite_c_css_pos_update') );
+            if(window.${globalVarName} && window.${globalVarName}.has('${id}')) {
+              window.${globalVarName}.delete('${id}');
+              window.dispatchEvent( new Event('${eventName}') );
             }
       })()
             `;
@@ -25,10 +36,10 @@ export default function viteCustomCssPosition(): Plugin | Plugin[] {
       const css = ${css};
       const id = ${id};
         const attributes = JSON.parse('${attributesString}');
-        window.__vite_c_css_pos_initial = window.__vite_c_css_pos_initial || new Map();
-        window.__vite_c_css_pos_initial.set(id, {css, attributes});
+        window.${globalVarName} = window.${globalVarName} || new Map();
+        window.${globalVarName}.set(id, {css, attributes});
 
-        window.dispatchEvent( new Event('__vite_c_css_pos_update') );
+        window.dispatchEvent( new Event('${eventName}') );
       `;
     },
   });
@@ -36,6 +47,15 @@ export default function viteCustomCssPosition(): Plugin | Plugin[] {
   return [
     {
       name: "vite-plugin-custom-css-position",
+      config() {
+        return {
+          define: {
+            __VITE_CSS_POS_INSTANCE_ID__: JSON.stringify(instanceId),
+            __VITE_CSS_POS_VAR_NAME__: JSON.stringify(globalVarName),
+            __VITE_CSS_POS_EVENT_NAME__: JSON.stringify(eventName),
+          },
+        };
+      },
     } satisfies Plugin,
     ...(Array.isArray(cssPlugin) ? cssPlugin : [cssPlugin]),
   ];
