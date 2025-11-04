@@ -8,7 +8,11 @@ const getEventName = (): string => {
   return "__vite_c_css_pos_update";
 };
 
-const StylesTarget = () => {
+const StylesTarget = (props: {
+  onChange?: (
+    stylesMap: Map<string, { css: string; attributes: Record<string, string> }>
+  ) => void;
+}) => {
   const globalVarName = getGlobalVarName();
   const eventName = getEventName();
   const globalVar = (window as any)[globalVarName];
@@ -23,6 +27,7 @@ const StylesTarget = () => {
     const updateListener = (_e: Event | undefined) => {
       setStylesMap((window as any)[globalVarName]);
       setVersion((v) => v + 1);
+      props.onChange?.(stylesMap);
     };
     window.addEventListener(eventName, updateListener);
 
@@ -31,7 +36,7 @@ const StylesTarget = () => {
     return () => {
       window.removeEventListener(eventName, updateListener);
     };
-  }, [globalVarName, eventName]);
+  }, [globalVarName, eventName, props.onChange]);
 
   return Array.from(stylesMap?.keys() || []).map((key) => {
     const entry = stylesMap.get(key);
