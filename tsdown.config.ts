@@ -7,4 +7,6 @@ export default defineConfig({
   define: {
     "process.env.CSS_TRANSFORMER_WASM": "false",
   },
+  minify: true,
+  sourcemap: true,
 });
