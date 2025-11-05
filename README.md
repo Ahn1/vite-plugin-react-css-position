@@ -36,12 +36,11 @@ yarn add vite-plugin-react-css-position
 Add the plugin to your `vite.config.ts`:
 
 ```typescript
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+...
 import { viteReactCssPosition } from "vite-plugin-react-css-position";
 
 export default defineConfig({
-  plugins: [viteReactCssPosition(), react()],
+  plugins: [react(), /* or vue(), */ viteReactCssPosition()],
 });
 ```
 
@@ -49,8 +48,10 @@ export default defineConfig({
 
 Import and place the `StylesTarget` component where you want your styles to be injected:
 
+#### In React
+
 ```tsx
-import StylesTarget from "vite-plugin-react-css-position/target";
+import StylesTarget from "vite-plugin-react-css-position/react";
 
 export function App() {
   return (
@@ -60,6 +61,20 @@ export function App() {
     </div>
   );
 }
+```
+
+#### In Vue
+
+```vue
+<script setup lang="ts">
+import StylesTarget from "vite-plugin-css-position/vue";
+</script>
+
+<template>
+  <div>
+    <StylesTarget />
+  </div>
+</template>
 ```
 
 That's it! Your stylesheets will now be injected at the position of the `<StylesTarget />` component.
