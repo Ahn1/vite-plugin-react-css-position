@@ -25,12 +25,12 @@
       "default": "./dist/index.js"
     },
     "./target": {
-      "types": "./dist/StylesTarget.d.ts",
-      "default": "./dist/StylesTarget.js"
+      "types": "./dist/StylesTargetReact.d.ts",
+      "default": "./dist/StylesTargetReact.js"
     },
     "./react": {
-      "types": "./dist/StylesTarget.d.ts",
-      "default": "./dist/StylesTarget.js"
+      "types": "./dist/StylesTargetReact.d.ts",
+      "default": "./dist/StylesTargetReact.js"
     },
     "./vue": {
       "types": "./dist/StylesTargetVue.vue.d.ts",
