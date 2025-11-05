@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-css-position",
-  "version": "1.2.1",
+  "version": "2.0.1",
   "description": "Custom position of vite styles within a vite react app",
   "type": "module",
   "license": "MIT",
@@ -33,6 +33,7 @@
       "default": "./dist/StylesTarget.js"
     },
     "./vue": {
+      "types": "./dist/StylesTargetVue.vue.d.ts",
       "default": "./dist/StylesTargetVue.vue"
     },
     "./package.json": "./package.json"
@@ -41,7 +42,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsdown && cp src/StylesTargetVue.vue dist/StylesTargetVue.vue",
+    "build": "tsdown && vue-tsc --project tsconfig.vue.json --skipLibCheck && cp src/StylesTargetVue.vue dist/StylesTargetVue.vue",
     "dev": "tsdown --watch",
     "play": "vite --config playground/vite.config.ts",
     "test": "vitest",
