@@ -1,9 +1,7 @@
-# vite-plugin-react-css-position
-
-[![npm version](https://img.shields.io/npm/v/vite-plugin-react-css-position)](https://www.npmjs.com/package/vite-plugin-react-css-position)
+[![npm version](https://img.shields.io/npm/v/vite-plugin-css-position)](https://www.npmjs.com/package/vite-plugin-css-position)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A Vite plugin that allows you to control where CSS stylesheets are injected in your React application. Perfect for scenarios where you need precise control over style placement, especially when working with Shadow DOM.
+A Vite plugin that allows you to control where CSS stylesheets are injected in your React or Vue application. Perfect for scenarios where you need precise control over style placement, especially when working with Shadow DOM.
 
 ## ✨ Features
 
@@ -14,19 +12,19 @@ A Vite plugin that allows you to control where CSS stylesheets are injected in y
 ## 📦 Installation
 
 ```bash
-npm install vite-plugin-react-css-position
+npm install vite-plugin-css-position
 ```
 
 or
 
 ```bash
-pnpm add vite-plugin-react-css-position
+pnpm add vite-plugin-css-position
 ```
 
 or
 
 ```bash
-yarn add vite-plugin-react-css-position
+yarn add vite-plugin-css-position
 ```
 
 ## 🚀 Quick Start
@@ -37,7 +35,7 @@ Add the plugin to your `vite.config.ts`:
 
 ```typescript
 ...
-import { viteReactCssPosition } from "vite-plugin-react-css-position";
+import { viteReactCssPosition } from "vite-plugin-css-position";
 
 export default defineConfig({
   plugins: [react(), /* or vue(), */ viteReactCssPosition()],
@@ -51,7 +49,7 @@ Import and place the `StylesTarget` component where you want your styles to be i
 #### In React
 
 ```tsx
-import StylesTarget from "vite-plugin-react-css-position/react";
+import StylesTarget from "vite-plugin-css-position/react";
 
 export function App() {
   return (
@@ -119,6 +117,6 @@ MIT © [Alexander Bogoslawski](https://github.com/Ahn1)
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/Ahn1/vite-plugin-react-css-position)
-- [Issue Tracker](https://github.com/Ahn1/vite-plugin-react-css-position/issues)
-- [npm Package](https://www.npmjs.com/package/vite-plugin-react-css-position)
+- [GitHub Repository](https://github.com/Ahn1/vite-plugin-css-position)
+- [Issue Tracker](https://github.com/Ahn1/vite-plugin-css-position/issues)
+- [npm Package](https://www.npmjs.com/package/vite-plugin-css-position)
