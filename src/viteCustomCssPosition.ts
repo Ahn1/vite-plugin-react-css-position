@@ -35,15 +35,10 @@ export default function viteCustomCssPosition(
         attributes.attributes?.["data-vite-dev-id"] ??
         hash("sha1", css).substring(0, 12)
       }"`;
-      return `
-    const css = ${css};
-    const id = ${id};
-      const attributes = JSON.parse('${attributesString}');
+      return `const css = ${css};const id = ${id};const attributes = JSON.parse('${attributesString}');
       window.${globalVarName} = window.${globalVarName} || new Map();
       window.${globalVarName}.set(id, {css, attributes});
-
-      window.dispatchEvent( new Event('${eventName}') );
-    `;
+      window.dispatchEvent( new Event('${eventName}') );`;
     },
   });
 
