@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-react-css-position",
+  "name": "vite-plugin-css-position",
   "version": "1.2.1",
   "description": "Custom position of vite styles within a vite react app",
   "type": "module",
@@ -28,13 +28,20 @@
       "types": "./dist/StylesTarget.d.ts",
       "default": "./dist/StylesTarget.js"
     },
+    "./react": {
+      "types": "./dist/StylesTarget.d.ts",
+      "default": "./dist/StylesTarget.js"
+    },
+    "./vue": {
+      "default": "./dist/StylesTargetVue.vue"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "tsdown",
+    "build": "tsdown && cp src/StylesTargetVue.vue dist/StylesTargetVue.vue",
     "dev": "tsdown --watch",
     "play": "vite --config playground/vite.config.ts",
     "test": "vitest",
@@ -56,13 +63,15 @@
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.0.4",
     "bumpp": "^10.3.1",
+    "globals": "^16.4.0",
     "happy-dom": "^20.0.8",
     "tsdown": "^0.15.9",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.45.0",
+    "unplugin-vue": "^7.0.4",
     "vite": "^7.1.12",
     "vitest": "^4.0.1",
-    "globals": "^16.4.0",
-    "typescript-eslint": "^8.45.0"
+    "vue-tsc": "^3.1.3"
   },
   "dependencies": {
     "vite-plugin-css-injected-by-js": "^3.5.2"

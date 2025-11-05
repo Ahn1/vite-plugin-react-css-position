@@ -1,9 +1,8 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  // ...config options
-  entry: ["src/index.ts", "src/StylesTarget.tsx", "src/StylesTarget.vue"],
-  external: ["lighningcss", "react", "react-dom", "vue", "vite"],
+  entry: ["src/index.ts", "src/StylesTargetReact.tsx"],
+  external: ["lighningcss", "react", "react-dom", "vue", "vite", "crypto"],
   define: {
     "process.env.CSS_TRANSFORMER_WASM": "false",
   },
